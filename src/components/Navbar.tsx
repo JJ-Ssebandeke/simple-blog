@@ -1,9 +1,14 @@
-import { Flex, HStack, Button, Box, Image} from '@chakra-ui/react';
-import React from 'react';
+import { Flex, HStack, Button, Box} from '@chakra-ui/react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { FaRegUser } from 'react-icons/fa'
+import { FcBusinessman } from 'react-icons/fc'
 
-const Navbar = () => {
+interface displayInfo{
+     toggle: Dispatch<SetStateAction<boolean>>;
+}
+
+const Navbar = (props: displayInfo): JSX.Element => {
+  const {toggle } = props;
   return <>
           <Flex as="header" position="fixed" w="100%" h="7.5vh"
            backgroundColor="rgba(255, 
@@ -11,14 +16,14 @@ const Navbar = () => {
            justifyContent="center">
              <HStack spacing={20}>
              <Box w="auto" h="auto" >
-                 <FaRegUser size="25px"></FaRegUser> 
+                 <FcBusinessman size="25px"></FcBusinessman> 
              </Box>
              <Flex>
                 <HStack spacing={10}>
-                  <Button colorScheme='gray' size='md' variant='ghost'>
+                  <Button colorScheme='gray' size='md' variant='ghost' onClick={() => toggle(true)}>
                     About
                   </Button>
-                  <Button colorScheme='gray' size='md' variant='ghost'>
+                  <Button colorScheme='gray' size='md' variant='ghost' onClick={() => toggle(false)}>
                     Projects
                   </Button>
                </HStack>
